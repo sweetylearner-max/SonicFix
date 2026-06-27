@@ -1,0 +1,64 @@
+# Miscellaneous
+*.class
+*.log
+*.lock
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+/ios/Flutter/Generated.xcconfig
+/ios/Flutter/app.flx
+/ios/Flutter/app.zip
+/ios/Flutter/flutter_assets/
+/ios/Flutter/flutter_export_environment.sh
+/ios/ServiceDefinitions.json
+/ios/Runner/GeneratedPluginRegistrant.*
+/android/local.properties
+
+# Firebase
+.firebase/
+.firebaserc
+firebase-debug.log
+firebase-debug.*.log
+google-services.json
+GoogleService-Info.plist
+lib/firebase_options.dart
+
+# Python / Backend
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.venv/
+.env
+.env.backup
+
+# IntelliJ/Android Studio
+.idea/
+.gradle/
+*.iml
+*.ipr
+*.iws
+
+# Visual Studio Code
+.vscode/
+
+# Secrets
+backend/functions/.env
+backend/functions/debug_import.py
+backend/functions/debug_gemini_connection.py
+backend/functions/simple_test.py
+backend/functions/list_all.py
