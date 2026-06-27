@@ -21,7 +21,7 @@
 
 **SonicFix** is an intelligent diagnostic platform that fuses **acoustic analysis** and **visual AI** to identify mechanical failures in real time — no technician required.
 
-Point your camera at a faulty AC compressor, car engine, or industrial motor. Let it listen. In seconds, SonicFix tells you **what's wrong**, **why it's failing**, and **how much it costs to fix** — localized to the Pakistani market (PKR).
+Point your camera at a faulty AC compressor, car engine, or industrial motor. Let it listen. In seconds, SonicFix tells you **what's wrong**, **why it's failing** .
 
 > Built at a hackathon. Shipped with ❤️.
 
