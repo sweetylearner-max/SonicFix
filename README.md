@@ -1,98 +1,181 @@
-# SonicFix: AI Acoustic Mechanic 🔧🔊
+<div align="center">
 
-**SonicFix** is a next-generation intelligent diagnostic platform that "hears" and "sees" mechanical failures. By fusing **YAMNet Acoustic Classification** with **Gemini 3.1 Multimodal AI**, it provides professional-grade diagnostics for cars, appliances, and industrial machinery.
+<img src="assets/logo.png" alt="SonicFix Logo" width="120"/>
 
-![Flutter](https://img.shields.io/badge/Flutter-3.x-blue?logo=flutter)
-![Firebase](https://img.shields.io/badge/Firebase-Gen2-orange?logo=firebase)
-![Gemini](https://img.shields.io/badge/AI-Gemini_3.1_Pro-8E75B2?logo=google-bard)
-![YAMNet](https://img.shields.io/badge/Acoustics-YAMNet-red?logo=tensorflow)
+# 🔊 SonicFix
+### Next-Generation Multimodal Machinery Diagnostic Platform
+
+*Hears the problem. Sees the machine. Diagnoses with precision.*
+
+[![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?style=for-the-badge&logo=flutter)](https://flutter.dev)
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python)](https://python.org)
+[![Firebase](https://img.shields.io/badge/Firebase-Functions-FFCA28?style=for-the-badge&logo=firebase)](https://firebase.google.com)
+[![Gemini](https://img.shields.io/badge/Gemini-Multimodal_AI-4285F4?style=for-the-badge&logo=google)](https://deepmind.google/technologies/gemini/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+
+</div>
 
 ---
 
-## 🏗️ The SonicFix Pipeline: "Sensory Fusion"
+## 🧠 What is SonicFix?
 
-The system follows a strict **Visual-First, Audio-Second** architecture to ensure maximum accuracy.
+**SonicFix** is an intelligent diagnostic platform that fuses **acoustic analysis** and **visual AI** to identify mechanical failures in real time — no technician required.
 
-```mermaid
-graph TD
-    %% Frontend
-    User["Flutter Chat UI"] -->|"1. Snap Photo (Mandatory)"| Storage["Firebase Storage"]
-    User -->|"2. Record Audio (5s Clip)"| Storage
-    User -->|"3. Trigger Analysis"| CloudFn["Cloud Function (Python)"]
+Point your camera at a faulty AC compressor, car engine, or industrial motor. Let it listen. In seconds, SonicFix tells you **what's wrong**, **why it's failing**, and **how much it costs to fix** — localized to the Pakistani market (PKR).
 
-    %% Backend Pre-processing
-    subgraph "Intelligent Pre-processing"
-        CloudFn -->|"Resample 16kHz"| YAMNet["YAMNet Classifier"]
-        YAMNet -->|"Mechanical Check"| Blacklist{"Is it Speech/Music?"}
-        Blacklist -->|"Yes"| Flag["Flag for Gemini Context"]
-        Blacklist -->|"No"| Signal["Signal Extraction"]
-    end
-
-    %% AI Fusion
-    subgraph "Multimodal Fusion Loop"
-        Signal --> Fusion["Gemini 3.1 Multimodal Engine"]
-        Flag --> Fusion
-        Storage -->|"Image + Audio Injection"| Fusion
-        
-        Fusion -->|"Model A: 3.1 Pro"| Result{"Success?"}
-        Result -->|"No (503/429): Try 3.1 Flash"| Result
-        Result -->|"No: Try Flash Lite"| Result
-    end
-
-    %% Delivery
-    Result -->|"Yes"| Firestore[("Firestore DB")]
-    Firestore -->|"Realtime Update"| User
-```
-
-### 🧠 Core Engineering Principles
-
-#### 1. YAMNet Acoustic Bottleneck Prevention
-Before passing audio to the heavy AI, we use **YAMNet** (TensorFlow Hub) to classify the sound signature.
-- **Signal Extraction**: We resample and normalize to 16kHz mono.
-- **Blacklist Filter**: The system detects if the user is accidentally sending speech, music, or silence, providing context to Gemini to "ignore the background noise."
-- **Efficiency**: Audio is capped at 5 seconds, ensuring sub-second classification.
-
-#### 2. Multimodal Data Fusion
-Unlike traditional apps that use Transcripts (Speech-to-Text), SonicFix injects the **Raw Waveform** directly into Gemini 3.1's native audio buffer.
-- **Vision+Audio Correlation**: Gemini identifies the machine visually (e.g., "Haier AC Compressor") and matches the sound texture to known failure modes (e.g., "Rhythmic clicking" suggesting a faulty starter relay).
-
-#### 3. Self-Healing Resilience Loop
-The backend implements an automated **Priority Fallback Strategy**:
-- 🏆 **Primary**: `gemini-3.1-pro-preview` (Highest accuracy)
-- 🥈 **Secondary**: `gemini-3-flash-preview` (Faster response)
-- 🥉 **Tertiary**: `gemini-3.1-flash-lite-preview` (Extreme low-latency fallback)
+> Built at a hackathon. Shipped with ❤️.
 
 ---
 
 ## ✨ Features
 
-- **💬 Professional Chat Interface**: 
-  - **Dynamic Bubbles**: Interactive messages with embedded image previews and custom **Waveform Audio Players**.
-  - **Diagnostic Cards**: Rich, color-coded summaries featuring machine ID, visual evidence, and technical confidence scores.
-  
-- **🔬 Localized Intelligence**:
-  - **Localized Pricing**: Cost estimations are tailored for the **Pakistan Market (2026)**, using actual local labor and part rates (PKR).
-  - **Repair Steps**: Actionable, step-by-step guides for technicians.
+| Feature | Description |
+|---|---|
+| 🎙️ **Acoustic Classification** | YAMNet filters noise before Gemini processes audio |
+| 👁️ **Visual Machine ID** | Identifies make/model from camera feed |
+| 🔗 **Sensory Fusion** | Audio waveform + vision correlated simultaneously |
+| 💬 **Chat Interface** | Dynamic bubbles with waveform players & diagnostic cards |
+| 💰 **Localized Cost Estimates** | Real labor & parts pricing for your local market |
+| 🔧 **Repair Guides** | Step-by-step actionable technician instructions |
 
-- **🎨 Premium UX**:
-  - **Theme Intelligence**: Fully adaptive Light/Dark modes.
-  - **Micro-Animations**: Smooth transitions powered by `animate_do`.
+| 🌗 **Light / Dark Mode** | Fully adaptive theme intelligence |
+| ⚡ **Self-Healing Backend** | 3-tier model fallback for 99.9% uptime |
 
 ---
 
-## 🚀 Deployment
+## 🏗️ Architecture — "Sensory Fusion Pipeline"
 
-### Backend (Python 3.11)
+```
+📷 Camera Feed ──────────────────────────────────┐
+                                                  ▼
+🎙️ Raw Audio ──► YAMNet (16kHz Mono) ──► Blacklist Filter ──► Gemini Multimodal
+                  ↑                                               ↓
+             5s Audio Cap                              Vision + Audio Correlation
+             Noise Detection                                      ↓
+                                                     Failure Mode Identification
+                                                                  ↓
+                                                     Diagnostic Card + PKR Costs
+```
+
+### Visual-First, Audio-Second
+
+SonicFix uses a strict **Visual-First, Audio-Second** approach:
+
+1. **🔍 Visual Identification** — Gemini sees the machine and establishes context (e.g., "Haier AC Compressor, Model X")
+2. **🎵 Acoustic Analysis** — YAMNet resamples audio to 16kHz mono and classifies the sound signature
+3. **🚫 Blacklist Filtering** — Speech, music, and silence are flagged and context is passed to Gemini to ignore background noise
+4. **🔗 Fusion** — Raw waveform is injected directly into Gemini's native audio buffer (no lossy speech-to-text)
+5. **📋 Diagnosis** — Failure modes are matched (e.g., "rhythmic clicking → faulty starter relay")
+
+---
+
+## 🔁 Self-Healing Fallback Strategy
+
+| Priority | Model | Use Case |
+|---|---|---|
+| 🏆 Primary | `gemini-2.5-pro-preview` | Highest accuracy |
+| 🥈 Secondary | `gemini-2.0-flash` | Faster response |
+| 🥉 Tertiary | `gemini-2.0-flash-lite` | Extreme low-latency fallback |
+
+If the primary model fails or times out, the backend automatically escalates down the chain — zero user disruption.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Flutter SDK `>=3.0.0`
+- Python `3.11`
+- Firebase CLI
+- Google Cloud project with Gemini API enabled
+
+### Backend (Python + Firebase Functions)
+
 ```bash
 cd backend
+pip install -r requirements.txt
+firebase login
 firebase deploy --only functions
 ```
 
 ### Frontend (Flutter)
+
 ```bash
 flutter pub get
 flutter run
 ```
 
+> For release build:
+> ```bash
+> flutter build apk --release
+> ```
+
 ---
 
+## 🗂️ Project Structure
+
+```
+SonicFix/
+├── lib/                    # Flutter source
+│   ├── screens/            # UI screens
+│   ├── widgets/            # Waveform player, diagnostic cards
+│   └── services/           # API + audio recording services
+├── backend/                # Python Firebase Functions
+│   ├── main.py             # Gemini + YAMNet pipeline
+│   └── requirements.txt
+├── assets/                 # Icons, animations
+└── pubspec.yaml
+```
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- Flutter / Dart
+- `animate_do` for micro-animations
+- Custom Waveform Audio Player widget
+
+**Backend**
+- Python 3.11
+- TensorFlow Hub — YAMNet acoustic model
+- Google Gemini Multimodal API
+- Firebase Cloud Functions
+
+---
+
+## 🌍 Localized Market Intelligence
+
+SonicFix repair estimates are calibrated for **local markets (2026)**:
+- Labor rates sourced from regional mechanic market averages
+- Parts pricing in local currency
+- Repair complexity adjusted for locally available tools and technicians
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please open an issue first to discuss what you'd like to change.
+
+```bash
+git checkout -b feature/your-feature
+git commit -m "Add: your feature"
+git push origin feature/your-feature
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
+
+---
+
+<div align="center">
+
+Made with ❤️ by **[@sweetylearner-max](https://github.com/sweetylearner-max)**
+
+*If SonicFix helped you, drop a ⭐ on the repo!*
+
+</div>
